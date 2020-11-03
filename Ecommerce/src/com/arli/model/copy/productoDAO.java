@@ -1,5 +1,4 @@
 package com.arli.model.copy;
-
 import com.arli.config.Conexion;
 
 import java.io.BufferedInputStream;
@@ -13,15 +12,39 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 
-public class productoDAO {
+public class productoDAO<HttpServletResponse> {
 	Connection con;
 	Conexion cn=new Conexion();
 	PreparedStatement ps;
 	ResultSet rs;
 	
+	public Producto listarId(int id) {
+		String sql="select * from producto where idproducto="+id;
+		Producto p=new Producto();
+		
+		try {
+			con=cn.getConnection();
+			ps=con.prepareStatement(sql);
+			rs=ps.executeQuery();
+			while (rs.next()) {
+				p.setId(rs.getInt(1));
+				p.setNombre(rs.getString(2));
+				p.setFoto(rs.getBinaryStream(3));
+				p.setDescripcion(rs.getString(4));
+				p.setPrecio(rs.getDouble(5));
+				p.setStock(rs.getInt(6));
+			}
+			
+		}catch (Exception e) {			
+			
+		}
+		
+		return
+		
+	}
 
 	public List<Producto> listar() {
-		List<Producto>productos=new ArrayList<Producto>();
+		List<Producto>producto=new ArrayList<Producto>();
 		String sql="select * from producto";
 		
 	try {
@@ -36,12 +59,12 @@ public class productoDAO {
 			p.setDescripcion(rs.getString(4));
 			p.setPrecio(rs.getDouble(5));
 			p.setStock(rs.getInt(6));
-			productos.add(p);
+			producto.add(p);
 		}
 	}catch (Exception e) {
 		
 	}
-	return productos;	
+	return producto;	
 			
 }
 	public void listarImg(int id, HttpServletResponse response) {

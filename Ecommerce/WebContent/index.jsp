@@ -2,20 +2,14 @@
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-
-
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
-
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>ArliStore</title>
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
         <link href="css/estilos.css" rel="stylesheet" type="text/css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-       
-<title>Arli</title>
 </head>
 <body>
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -34,7 +28,7 @@
 		      </li>
 		      
 		      <li class="nav-item">
-		        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Carrito de compras</a>
+		        <a class="nav-link" href="Controlador?accion=carrito"><i class="fas fa-car-plus">(<label>${contador}</label>)</i>Carrito de compras</a>
 		      </li>
 		    </ul>
 		    <form class="form-inline my-2 my-lg-0">
@@ -60,11 +54,11 @@
 
 		<div class="container mt-4">                
              <div class="row">
-             	<c:forEach var="p" items="${productos}">
+             	<c:forEach var="p" items="${producto}">
              	<div class="col-sm-4">
 	             	<div class="card">
 	             		<div class="card-header">
-	             			<label>${p.getNombres()}</label>
+	             			<label>${p.getnameproducto()}</label>
 	             		</div>
 	             		<div class="card-body">
 	             			<i>$40.00</i>
@@ -86,6 +80,8 @@
              
              </div>          
         </div>   
+        
+        
         
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
