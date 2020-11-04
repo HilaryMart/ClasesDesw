@@ -1,4 +1,4 @@
-package com.arli.model.copy;
+package com.arli.modelo.DAO;
 import com.arli.config.Conexion;
 
 import java.io.BufferedInputStream;

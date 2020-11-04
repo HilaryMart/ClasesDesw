@@ -8,8 +8,10 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.arli.model.copy.Cliente;
 import com.arli.model.copy.Producto;
-import com.arli.model.copy.productoDAO;
+import com.arli.modelo.DAO.productoDAO;
 import com.sun.net.httpserver.HttpServer;
 
 import controller.WebServlet;
@@ -115,6 +117,25 @@ public class Controlador extends HttpServlet {
 						listaCarrito.remove(i)
 					}	
 				}
+				break;
+				
+			case "ActualizarCantidad":
+				int idpro=Integer.parseInt(request.getParameter("idp"));
+				int cant=Integer.parseInt(request.getParameter("Cantidad"));
+				for(int i = 0; i < listaCarrito.size(); i++) {
+					if(listaCarrito.get(i).getIdProducto()==idpro) {
+						listaCarrito.get(i).setCantidad(cant); 
+						double st=listaCarrito.get(i).getPrecioCompra()*cant; 
+						listaCarrito.get(i).setSubtotal(st);
+						
+					}
+					
+				}
+			break;
+			case "Nuevo": 
+				listaCarrito = new ArrayList();
+				request.getRequestDispacher("Controlador?accion=home").forward(request, response);	
+				break;	
 				
 			case "Carrito":
 				totalPagar=0.0;
@@ -125,6 +146,15 @@ public class Controlador extends HttpServlet {
 				}			
 				request.setAttribute("totalPagar", totalPagar);
 				request.getRequestDispatcher("carrito.jsp").forward(request, response);				
+				break;
+				
+			case "GenerarCompra": 
+				Cliente cliente=new Cliente();
+				cliente.setId(1);
+			    Pago pago=new Pago();
+			    Compra compra=new Compra(cliente, 1, Fecha.FechaBD(), totalPagar, "Cancelado", listaCarrito);
+			    
+			    		
 				break;
 				
 			default:

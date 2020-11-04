@@ -41,7 +41,7 @@ $(document) .ready(funtion (){
 		})		
 	}
 	
-	$("#Cantidad").click(function ()){
+	$("tr #Cantidad").click(function ()){
 		var idp=$(this).parent().fin("#idpro").val();
 		var cantidad=$(this).parent().find("#Cantidad").val();
 		var url="Controlador?accion=ActualizarCantidad";
@@ -50,7 +50,7 @@ $(document) .ready(funtion (){
 			url: url,
 			data: "idp="+idp+"&Cantidad="+cantidad,
 			success: function (data,textStatus, jqXHR) {
-				
+				location.href="Controlador?accion=Carrito";
 				}
 				
 		});
